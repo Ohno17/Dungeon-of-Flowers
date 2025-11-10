@@ -2,15 +2,23 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    [SerializeField] private GridMoverScript gridMover;
+    
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.A))
+            gridMover.Move(Vector3Int.left);
+        if (Input.GetKeyDown(KeyCode.D))
+            gridMover.Move(Vector3Int.right);
+        if (Input.GetKeyDown(KeyCode.W))
+            gridMover.Move(Vector3Int.up);
+        if (Input.GetKeyDown(KeyCode.S))
+            gridMover.Move(Vector3Int.down);
     }
 }
