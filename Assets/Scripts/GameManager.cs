@@ -19,13 +19,14 @@ namespace DungeonOfFlowers
         void Start()
         {
             roomPosition = new(0, 0);
+            cameraMover.SetPositionAtomic(roomPosition * new Vector3Int(ROOM_WIDTH, ROOM_HEIGHT));
         }
 
         // Update is called once per frame
         void Update()
         {
-            int roomX = Mathf.FloorToInt((float) (playerMover.gridPosition.x + (ROOM_WIDTH / 2)) / ROOM_WIDTH);
-            int roomY = Mathf.FloorToInt((float) (playerMover.gridPosition.y + (ROOM_HEIGHT / 2)) / ROOM_HEIGHT);
+            int roomX = Mathf.FloorToInt((float)(playerMover.gridPosition.x + (ROOM_WIDTH / 2)) / ROOM_WIDTH);
+            int roomY = Mathf.FloorToInt((float)(playerMover.gridPosition.y + (ROOM_HEIGHT / 2)) / ROOM_HEIGHT);
             roomPosition = new(roomX, roomY);
 
             cameraMover.SetPosition(roomPosition * new Vector3Int(ROOM_WIDTH, ROOM_HEIGHT));

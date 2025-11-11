@@ -26,6 +26,12 @@ public class GridMover : MonoBehaviour
         targetWorldPosition = grid.GetCellCenterWorld(position) + offset;
     }
 
+    public void SetPositionAtomic(Vector3Int position)
+    {
+        targetWorldPosition = grid.GetCellCenterWorld(position) + offset;
+        transform.position = targetWorldPosition;
+    }
+
     void Update()
     {
         transform.position = Vector3.Lerp(transform.position, targetWorldPosition, lerpSpeed * Time.deltaTime);

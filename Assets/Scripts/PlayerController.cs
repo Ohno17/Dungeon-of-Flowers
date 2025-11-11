@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-
+        
     }
 
     void TryMove(Vector3Int direction)
