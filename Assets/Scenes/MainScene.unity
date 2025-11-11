@@ -332,7 +332,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f5c07b9cbbe5b498e4bb6174dda23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  gridMover: {fileID: 923464430}
+  tilemap: {fileID: 1829663334}
+  mover: {fileID: 923464430}
 --- !u!114 &923464430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,7 +428,6 @@ MonoBehaviour:
   roomPosition: {x: 0, y: 0, z: 0}
   playerMover: {fileID: 923464430}
   cameraMover: {fileID: 519420033}
-  grid: {fileID: 1078702558}
 --- !u!4 &1321623983
 Transform:
   m_ObjectHideFlags: 0
