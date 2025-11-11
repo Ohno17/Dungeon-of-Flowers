@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField] private GridMoverScript gridMover;
+    [SerializeField] private GridMover gridMover;
     
     void Start()
     {
