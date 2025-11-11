@@ -3,8 +3,8 @@ using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private Tilemap tilemap;
     [SerializeField] private GridMover mover;
+    [SerializeField] private Tilemap tilemap;
 
     void Start()
     {
