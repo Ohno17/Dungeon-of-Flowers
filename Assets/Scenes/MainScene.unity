@@ -332,6 +332,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f5c07b9cbbe5b498e4bb6174dda23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  holdDelay: 0.5
+  repeatRate: 0.1
   mover: {fileID: 923464430}
   tilemap: {fileID: 1829663334}
 --- !u!114 &923464430
