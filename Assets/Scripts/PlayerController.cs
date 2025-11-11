@@ -1,24 +1,31 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private Tilemap tilemap;
+    [SerializeField] private GridMover mover;
 
-    [SerializeField] private GridMover gridMover;
-    
     void Start()
     {
-        
+
+    }
+
+    void TryMove(Vector3Int direction)
+    {
+        if (tilemap.GetColliderType(mover.gridPosition + direction) != Tile.ColliderType.None) return;
+        mover.Move(direction);
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
-            gridMover.Move(Vector3Int.left);
+            TryMove(Vector3Int.left);
         if (Input.GetKeyDown(KeyCode.D))
-            gridMover.Move(Vector3Int.right);
+            TryMove(Vector3Int.right);
         if (Input.GetKeyDown(KeyCode.W))
-            gridMover.Move(Vector3Int.up);
+            TryMove(Vector3Int.up);
         if (Input.GetKeyDown(KeyCode.S))
-            gridMover.Move(Vector3Int.down);
+            TryMove(Vector3Int.down);
     }
 }

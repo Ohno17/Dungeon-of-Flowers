@@ -7,7 +7,6 @@ namespace DungeonOfFlowers
 {
     public class GameManager : MonoBehaviour
     {
-
         public const int ROOM_WIDTH = 18;
         public const int ROOM_HEIGHT = 10;
         [HideInInspector] public int flowers = 0;
@@ -28,7 +27,7 @@ namespace DungeonOfFlowers
             int roomX = Mathf.FloorToInt((float) (playerMover.gridPosition.x + (ROOM_WIDTH / 2)) / ROOM_WIDTH);
             int roomY = Mathf.FloorToInt((float) (playerMover.gridPosition.y + (ROOM_HEIGHT / 2)) / ROOM_HEIGHT);
             roomPosition = new(roomX, roomY);
-            
+
             cameraMover.SetPosition(roomPosition * new Vector3Int(ROOM_WIDTH, ROOM_HEIGHT));
         }
     }

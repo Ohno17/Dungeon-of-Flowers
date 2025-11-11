@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class GridMover : MonoBehaviour
 {
-
     public float lerpSpeed = 15f;
     [HideInInspector] public Vector3Int gridPosition;
 
