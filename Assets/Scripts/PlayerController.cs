@@ -58,9 +58,22 @@ public class PlayerController : MonoBehaviour
         if (key == KeyCode.S) TryMove(Vector3Int.down);
     }
 
-    void TryMove(Vector3Int direction)
+    bool TryMove(Vector3Int direction)
     {
-        if (tilemap.GetColliderType(mover.gridPosition + direction) != Tile.ColliderType.None) return;
+        Vector3Int newPosition = mover.gridPosition + direction;
+        if (tilemap.GetColliderType(newPosition) != Tile.ColliderType.None) return false;
+
+        foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag(GameManager.BOX_TAG))
+        {
+            BoxController box = gameObject.GetComponent<BoxController>();
+            if (box.mover.gridPosition == newPosition)
+            {
+                if (box.TryMove(direction)) break;
+                else return false;
+            }
+        }
+        
         mover.Move(direction);
+        return true;
     }
 }

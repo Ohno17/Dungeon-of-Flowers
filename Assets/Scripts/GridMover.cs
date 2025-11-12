@@ -1,16 +1,19 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class GridMover : MonoBehaviour
 {
-    public float lerpSpeed = 15f;
     public Grid grid;
     [HideInInspector] public Vector3Int gridPosition;
     
+    [SerializeField] private float lerpSpeed = 15f;
     [SerializeField] private Vector3 offset;
     private Vector3 targetWorldPosition;
 
-    void Start()
+    void Awake()
     {
+        if (grid == null) grid = GameObject.FindGameObjectWithTag(GameManager.TILEMAP_TAG).GetComponent<Tilemap>().layoutGrid;
+
         gridPosition = grid.WorldToCell(transform.position);
         targetWorldPosition = grid.GetCellCenterWorld(gridPosition);
     }
@@ -28,11 +31,13 @@ public class GridMover : MonoBehaviour
 
     public void SetPosition(Vector3Int position)
     {
+        gridPosition = position;
         targetWorldPosition = grid.GetCellCenterWorld(position) + offset;
     }
 
     public void SetPositionAtomic(Vector3Int position)
     {
+        gridPosition = position;
         targetWorldPosition = grid.GetCellCenterWorld(position) + offset;
         transform.position = targetWorldPosition;
     }

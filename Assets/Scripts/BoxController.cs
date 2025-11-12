@@ -3,23 +3,39 @@ using UnityEngine.Tilemaps;
 
 public class BoxController : MonoBehaviour
 {
-    [SerializeField] private GridMover mover;
-    [SerializeField] private Tilemap tilemap;
-    private Vector3Int resetPosition;
+    public GridMover mover;
+    [HideInInspector] public Vector3Int initalPosition;
+
+    private Tilemap tilemap;
 
     void Start()
     {
-        resetPosition = mover.gridPosition;
+        initalPosition = mover.gridPosition;
+        tilemap = GameObject.FindGameObjectWithTag(GameManager.TILEMAP_TAG).GetComponent<Tilemap>();
     }
 
     void Update()
     {
-        
+
     }
 
-    public void TryMove(Vector3Int direction)
+    public void ResetPosition()
     {
-        if (tilemap.GetColliderType(mover.gridPosition + direction) != Tile.ColliderType.None) return;
+        mover.SetPositionAtomic(initalPosition);
+    }
+    
+    public bool TryMove(Vector3Int direction)
+    {
+        Vector3Int newPosition = mover.gridPosition + direction;
+        if (tilemap.GetColliderType(newPosition) != Tile.ColliderType.None) return false;
+
+        foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag(GameManager.BOX_TAG))
+        {
+            BoxController box = gameObject.GetComponent<BoxController>();
+            if (box.mover.gridPosition == newPosition) return false;
+        }
+
         mover.Move(direction);
+        return true;
     }
 }
