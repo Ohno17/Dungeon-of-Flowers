@@ -27,14 +27,28 @@ public class GameManager : MonoBehaviour
         roomPosition = TileRoomPosition(playerMover.gridPosition);
         if (roomPosition != lastRoomPosition)
         {
+            // Reset boxes in just-entered room
             foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag(GameManager.BOX_TAG))
             {
-                BoxController box = gameObject.GetComponent<BoxController>();
-                if (TileRoomPosition(box.mover.gridPosition) == roomPosition) box.ResetPosition();
+                GridMover boxMover = gameObject.GetComponent<GridMover>();
+                if (TileRoomPosition(boxMover.gridPosition) == roomPosition) boxMover.ResetPosition();
             }
+            playerMover.initalPosition = playerMover.gridPosition;
         }
 
+        if (Input.GetKeyDown(KeyCode.R)) ResetCurrentRoom();
+
         cameraMover.SetPosition(roomPosition * new Vector3Int(ROOM_WIDTH, ROOM_HEIGHT));
+    }
+
+    void ResetCurrentRoom()
+    {
+        foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag(GameManager.BOX_TAG))
+        {
+            GridMover boxMover = gameObject.GetComponent<GridMover>();
+            if (TileRoomPosition(boxMover.gridPosition) == roomPosition) boxMover.ResetPosition();
+        }
+        playerMover.ResetPosition();
     }
 
     // Convert tile position to a room position

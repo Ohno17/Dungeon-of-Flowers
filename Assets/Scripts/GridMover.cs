@@ -5,6 +5,7 @@ public class GridMover : MonoBehaviour
 {
     public Grid grid;
     [HideInInspector] public Vector3Int gridPosition;
+    [HideInInspector] public Vector3Int initalPosition;
     
     [SerializeField] private float lerpSpeed = 15f;
     [SerializeField] private Vector3 offset;
@@ -16,6 +17,7 @@ public class GridMover : MonoBehaviour
 
         gridPosition = grid.WorldToCell(transform.position);
         targetWorldPosition = grid.GetCellCenterWorld(gridPosition);
+        initalPosition = gridPosition;
     }
 
     void Update()
@@ -40,5 +42,10 @@ public class GridMover : MonoBehaviour
         gridPosition = position;
         targetWorldPosition = grid.GetCellCenterWorld(position) + offset;
         transform.position = targetWorldPosition;
+    }
+
+    public void ResetPosition()
+    {
+        SetPositionAtomic(initalPosition);
     }
 }
