@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
         Vector3Int newPosition = mover.gridPosition + direction;
         if (tilemap.GetColliderType(newPosition) != Tile.ColliderType.None) return false;
 
-        foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag(GameManager.BOX_TAG))
+        foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag(GameUtils.BOX_TAG))
         {
             BoxController box = gameObject.GetComponent<BoxController>();
             if (box.mover.gridPosition == newPosition)
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
                 else return false;
             }
         }
-        
+
         mover.Move(direction);
         return true;
     }

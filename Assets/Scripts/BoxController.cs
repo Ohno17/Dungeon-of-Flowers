@@ -9,7 +9,7 @@ public class BoxController : MonoBehaviour
 
     void Start()
     {
-        tilemap = GameObject.FindGameObjectWithTag(GameManager.TILEMAP_TAG).GetComponent<Tilemap>();
+        tilemap = GameObject.FindGameObjectWithTag(GameUtils.TILEMAP_TAG).GetComponent<Tilemap>();
     }
 
     void Update()
@@ -25,14 +25,14 @@ public class BoxController : MonoBehaviour
         if (tilemap.GetColliderType(newPosition) != Tile.ColliderType.None) return false;
 
         // If another box is in the way
-        foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag(GameManager.BOX_TAG))
+        foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag(GameUtils.BOX_TAG))
         {
             BoxController box = gameObject.GetComponent<BoxController>();
             if (box.mover.gridPosition == newPosition) return false;
         }
 
         // If box will leave room as a result of this
-        if (GameManager.TileRoomPosition(mover.gridPosition) != GameManager.TileRoomPosition(newPosition)) return false;
+        if (GameUtils.TileRoomPosition(mover.gridPosition) != GameUtils.TileRoomPosition(newPosition)) return false;
 
         mover.Move(direction);
         return true;

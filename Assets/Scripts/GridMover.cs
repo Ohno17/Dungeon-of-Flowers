@@ -13,7 +13,7 @@ public class GridMover : MonoBehaviour
 
     void Awake()
     {
-        if (grid == null) grid = GameObject.FindGameObjectWithTag(GameManager.TILEMAP_TAG).GetComponent<Tilemap>().layoutGrid;
+        if (grid == null) grid = GameObject.FindGameObjectWithTag(GameUtils.TILEMAP_TAG).GetComponent<Tilemap>().layoutGrid;
 
         gridPosition = grid.WorldToCell(transform.position);
         targetWorldPosition = grid.GetCellCenterWorld(gridPosition);
