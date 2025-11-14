@@ -4,7 +4,6 @@ using UnityEngine.Tilemaps;
 public class PuzzleManager : MonoBehaviour
 {
     [SerializeField] private Tilemap tilemap;
-    [SerializeField] private GridMover playerMover;
     [SerializeField] private Tile redDoorType;
     [SerializeField] private Tile redButtonType;
 
@@ -16,6 +15,7 @@ public class PuzzleManager : MonoBehaviour
     {
         PlayerController.AfterMoveEvent += AfterMove;
         GameManager.ChangeRoomEvent += ChangeRoom;
+        GameManager.PuzzleResetEvent += PuzzleReset;
     }
 
     // Update is called once per frame
@@ -31,8 +31,13 @@ public class PuzzleManager : MonoBehaviour
 
     void ChangeRoom(object sender, Vector3Int newRoomPosition)
     {
+        PuzzleReset(sender);
+    }
+
+    void PuzzleReset(object sender)
+    {
+        Debug.Log("TODO reset doors, butto, and every");
         redActivated = false;
-        Debug.Log("TODO reset doors");
     }
 
     void ActivateRed()

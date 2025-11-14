@@ -415,6 +415,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420034}
   - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
@@ -514,6 +515,19 @@ MonoBehaviour:
   initalPosition: {x: 0, y: 0, z: 0}
   lerpSpeed: 5
   offset: {x: -0.5, y: -0.5, z: -10}
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51dd74b0fc60e404db8f84308adee5d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  mover: {fileID: 519420033}
 --- !u!1001 &629216565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1113,10 +1127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192069c2ddb96da4ba334462a26ac410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flowers: 0
   roomPosition: {x: 0, y: 0, z: 0}
-  playerMover: {fileID: 923464430}
-  cameraMover: {fileID: 519420033}
 --- !u!4 &1321623983
 Transform:
   m_ObjectHideFlags: 0
@@ -1144,10 +1155,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d61c898c3b57604da442a45d1a2f4ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  tilemap: {fileID: 0}
-  playerMover: {fileID: 0}
-  redDoorType: {fileID: 0}
-  redButtonType: {fileID: 0}
+  tilemap: {fileID: 1829663334}
+  redDoorType: {fileID: 11400000, guid: 60fb63f26cc4be34ebe5978c598b4440, type: 2}
+  redButtonType: {fileID: 11400000, guid: 3f21c05f6c65b5d4b9c918b91a9dca78, type: 2}
 --- !u!1001 &1567442838
 PrefabInstance:
   m_ObjectHideFlags: 0

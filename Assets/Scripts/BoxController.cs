@@ -10,13 +10,18 @@ public class BoxController : MonoBehaviour
     void Start()
     {
         GameManager.PuzzleResetEvent += PuzzleReset;
-
+        GameManager.ChangeRoomEvent += ChangeRoom;
         tilemap = GameObject.FindGameObjectWithTag(GameUtils.TILEMAP_TAG).GetComponent<Tilemap>();
     }
 
     void Update()
     {
 
+    }
+
+    void ChangeRoom(object sender, Vector3Int newRoomPosition)
+    {
+        PuzzleReset(sender);
     }
 
     void PuzzleReset(object sender)
