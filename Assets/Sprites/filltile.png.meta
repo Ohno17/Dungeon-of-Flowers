@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d440fd59cc163354f949155cccdbc9e6
+guid: 3a8fa82cc6421d449a3db2ebdd377b03
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5496861096845606897
-    second: blanktile_0
+      213: -8232041590642065462
+    second: filltile_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -53,7 +53,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 3
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blanktile_0
+      name: filltile_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1ff75214b06c84c40800000000000000
-      internalID: 5496861096845606897
+      spriteID: acfb98dd9c9e1cd80800000000000000
+      internalID: -8232041590642065462
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      blanktile_0: 5496861096845606897
+      filltile_0: -8232041590642065462
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
