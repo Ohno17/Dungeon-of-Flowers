@@ -25,6 +25,11 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R)) PuzzleResetEvent?.Invoke(this);
     }
 
+    void OnDestroy()
+    {
+        PlayerController.AfterMoveEvent -= AfterMove;
+    }
+
     void AfterMove(object sender, Vector3Int newPosition)
     {
         lastRoomPosition = roomPosition;

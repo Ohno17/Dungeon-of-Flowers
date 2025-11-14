@@ -17,6 +17,11 @@ public class CameraController : MonoBehaviour
         
     }
 
+    void OnDestroy()
+    {
+        GameManager.ChangeRoomEvent -= ChangeRoom;
+    }
+
     void ChangeRoom(object sender, Vector3Int newRoomPosition)
     {
         mover.SetPositionAtomic(newRoomPosition * new Vector3Int(GameUtils.ROOM_WIDTH, GameUtils.ROOM_HEIGHT));

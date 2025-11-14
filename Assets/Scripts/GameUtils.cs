@@ -14,4 +14,12 @@ static class GameUtils
         int roomY = Mathf.FloorToInt((float)(tilePosition.y + (ROOM_HEIGHT / 2)) / ROOM_HEIGHT);
         return new(roomX, roomY);
     }
+
+    // Convert room position to tile position of center-top-right tile
+    public static Vector3Int RoomTilePosition(Vector3Int roomPosition)
+    {
+        int tileX = (roomPosition.x * ROOM_WIDTH) + (ROOM_WIDTH  / 2);
+        int tileY = (roomPosition.y * ROOM_HEIGHT) + (ROOM_HEIGHT / 2);
+        return new Vector3Int(tileX, tileY);
+    }
 }

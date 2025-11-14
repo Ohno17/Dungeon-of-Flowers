@@ -40,6 +40,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnDestroy()
+    {
+        GameManager.ChangeRoomEvent -= ChangeRoom;
+        GameManager.PuzzleResetEvent -= PuzzleReset;
+    }
+
     void ChangeRoom(object sender, Vector3Int newRoomPosition)
     {
         mover.initalPosition = mover.gridPosition;
