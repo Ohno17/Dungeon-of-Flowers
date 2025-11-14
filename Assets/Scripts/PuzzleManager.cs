@@ -14,24 +14,25 @@ public class PuzzleManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        PlayerController.AfterMoveEvent += AfterMove;
+        GameManager.ChangeRoomEvent += ChangeRoom;
     }
 
     // Update is called once per frame
     void Update()
     {
-        TryActivateTile(playerMover.gridPosition);
+        
     }
 
-    public void NewRoom()
+    void AfterMove(object sender, Vector3Int newPosition)
+    {
+        TryActivateTile(newPosition);
+    }
+
+    void ChangeRoom(object sender, Vector3Int newRoomPosition)
     {
         redActivated = false;
-        ResetState();
-    }
-
-    void ResetState()
-    {
-        // TODO: Reset removed door tiles
+        Debug.Log("TODO reset doors");
     }
 
     void ActivateRed()

@@ -3,6 +3,9 @@ using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
+    public delegate void AfterMoveEventHandler(object sender, Vector3Int newPosition);
+    public static event AfterMoveEventHandler AfterMoveEvent;
+
     public float holdDelay = 0.5f;
     public float repeatRate = 0.13f;
 
@@ -14,7 +17,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        
+        GameManager.ChangeRoomEvent += ChangeRoom;
+        GameManager.PuzzleResetEvent += PuzzleReset;
     }
 
     void Update()
@@ -34,6 +38,16 @@ public class PlayerController : MonoBehaviour
             PerformMove(currentKey);
             nextMoveTime = Time.time + repeatRate;
         }
+    }
+
+    void ChangeRoom(object sender, Vector3Int newRoomPosition)
+    {
+        mover.initalPosition = mover.gridPosition;
+    }
+
+    void PuzzleReset(object sender)
+    {
+        mover.ResetPosition();
     }
 
     void StartHold(KeyCode key)
@@ -74,6 +88,7 @@ public class PlayerController : MonoBehaviour
         }
 
         mover.Move(direction);
+        AfterMoveEvent?.Invoke(this, newPosition);
         return true;
     }
 }

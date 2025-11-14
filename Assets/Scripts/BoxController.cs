@@ -9,12 +9,19 @@ public class BoxController : MonoBehaviour
 
     void Start()
     {
+        GameManager.PuzzleResetEvent += PuzzleReset;
+
         tilemap = GameObject.FindGameObjectWithTag(GameUtils.TILEMAP_TAG).GetComponent<Tilemap>();
     }
 
     void Update()
     {
 
+    }
+
+    void PuzzleReset(object sender)
+    {
+        mover.ResetPosition();
     }
     
     public bool TryMove(Vector3Int direction)

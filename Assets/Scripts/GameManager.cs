@@ -2,16 +2,22 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public delegate void ChangeRoomEventHandler(object sender, Vector3Int newRoomPosition);
+    public static event ChangeRoomEventHandler ChangeRoomEvent;
+    public delegate void PuzzleResetEventHandler(object sender);
+    public static event PuzzleResetEventHandler PuzzleResetEvent;
+
     [HideInInspector] public int flowers = 0;
     [HideInInspector] public Vector3Int roomPosition;
 
-    [SerializeField] private GridMover playerMover;
     [SerializeField] private GridMover cameraMover;
     private Vector3Int lastRoomPosition;
 
     // Start is called before the first frame update
     void Start()
     {
+        PlayerController.AfterMoveEvent += AfterMove;
+
         roomPosition = new(0, 0);
         cameraMover.SetPositionAtomic(roomPosition * new Vector3Int(GameUtils.ROOM_WIDTH, GameUtils.ROOM_HEIGHT));
     }
@@ -19,31 +25,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lastRoomPosition = roomPosition;
-        roomPosition = GameUtils.TileRoomPosition(playerMover.gridPosition);
-        if (roomPosition != lastRoomPosition)
-        {
-            // Reset boxes in just-entered room
-            foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag(GameUtils.BOX_TAG))
-            {
-                GridMover boxMover = gameObject.GetComponent<GridMover>();
-                if (GameUtils.TileRoomPosition(boxMover.gridPosition) == lastRoomPosition) boxMover.ResetPosition();
-            }
-            playerMover.initalPosition = playerMover.gridPosition;
-        }
-
-        if (Input.GetKeyDown(KeyCode.R)) ResetCurrentRoom();
+        if (Input.GetKeyDown(KeyCode.R)) PuzzleResetEvent?.Invoke(this);
 
         cameraMover.SetPositionAtomic(roomPosition * new Vector3Int(GameUtils.ROOM_WIDTH, GameUtils.ROOM_HEIGHT));
     }
 
-    void ResetCurrentRoom()
+    void AfterMove(object sender, Vector3Int newPosition)
     {
-        foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag(GameUtils.BOX_TAG))
+        lastRoomPosition = roomPosition;
+        roomPosition = GameUtils.TileRoomPosition(newPosition);
+        if (roomPosition != lastRoomPosition)
         {
-            GridMover boxMover = gameObject.GetComponent<GridMover>();
-            if (GameUtils.TileRoomPosition(boxMover.gridPosition) == roomPosition) boxMover.ResetPosition();
+            ChangeRoomEvent?.Invoke(this, roomPosition);
         }
-        playerMover.ResetPosition();
     }
 }
